@@ -1,1 +1,5 @@
 An extendible implementation of the Assert class in MSTest. Allows for extending the Assert methods with the default MSTest methods as a default. Also includes a Throws() method for asserting exceptions.
+
+For more details see:
+
+http://ideplorable.blogspot.com/2012/01/asserting-exceptions-in-mstest-with.html
