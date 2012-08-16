@@ -1,21 +1,19 @@
 An extendible implementation of the Assert class in MSTest. Allows for extending the Assert methods with the default MSTest methods as a default. Also includes a Throws() method for asserting exceptions.
 
-To get started, add the MsTestExtensions.dll lib to your project.
+* 1. To get started, add the MsTestExtensions.dll lib to your project (I'm assuming you may have downloaded the package from Nuget to do this: package name = MsTestExtensions).
 
-Add a using/import MsTestExtensions entry within your class.
+* 2. Add a using/import MsTestExtensions entry within your class.
 
-Inherit from BaseTest with the Test Class you are using and you should see Assert.Throws(...) in intellisense.
+* 3.
 
-If you would rather not inherit from BaseTest you can use the syntax:
+** 3a. Inherit from BaseTest with the Test Class you are using and you should see Assert.Throws(...) in intellisense.
 
-ExceptionAssert.Throws(...)
+** 3b. If you would rather not inherit from BaseTest you can use the syntax: ExceptionAssert.Throws(...)
 
-Lastly if the above options do not suite, you can add the following within your test class:
-
-public static readonly IAssertion Assert = new Assertion();
+** 3c. Lastly if the above options do not suite, you can add the following within your test class: public static readonly IAssertion Assert = new Assertion();
 
 NB IAssertion is the interface to use for adding your own custom extensions.
 
 For more details see:
 
-http://www.ideplorable.com/2012/01/asserting-exceptions-in-mstest-with.html
+http://www.ideplorable.com/2012/02/extending-assert-in-mstest.html
