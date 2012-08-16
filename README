@@ -1,4 +1,4 @@
-An extendible implementation of the Assert class in MSTest. Allows for extending the Assert methods with the default MSTest methods as a default. Also includes a Throws() method for asserting exceptions.
+An extendible implementation of the Assert class in MSTest. Allows for extending the Assert methods whilst retaining the default Assert. methods. Also includes a Throws() method for asserting exceptions.
 
 * 1. To get started, add the MsTestExtensions.dll lib to your project (I'm assuming you may have downloaded the package from Nuget to do this: package name = MsTestExtensions).
 
