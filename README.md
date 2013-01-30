@@ -1,3 +1,5 @@
+#Add Extension Methods to Assert in MSTest
+
 An extendible implementation of the Assert class in MSTest. Allows for extending the Assert methods whilst retaining the default Assert. methods. Also includes a Throws() method for asserting exceptions.
 
 ##What Problem Does it Solve?
@@ -14,7 +16,7 @@ public void AddWithNegativeNumberThrowsExceptionExpectedMessage()
     StringCalculator sc = new StringCalculator();
   
     // Act => Assert
-    ExceptionAssert.Throws(() => sc.Add("-1"), "you cannot supply negative numbers.");
+    Assert.Throws(() => sc.Add("-1"), "you cannot supply negative numbers.");
 }
 ```
 
