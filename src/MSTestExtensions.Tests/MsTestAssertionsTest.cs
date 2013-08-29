@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MSTestExtensions.Tests
 {
     [TestClass]
-    public class MsTestExtensionsTest
+    public class MsTestAssertionsTest
     {
         private class MyClass
         {
@@ -41,7 +41,7 @@ namespace MSTestExtensions.Tests
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Assert.AreEqual("Assert.AreEqual failed. Expected:<MSTestExtensions.Tests.MsTestExtensionsTest+MyClass>. Actual:<MSTestExtensions.Tests.MsTestExtensionsTest+MyClass>. ", e.Message);
+                Assert.AreEqual("Assert.AreEqual failed. Expected:<MSTestExtensions.Tests.MsTestAssertionsTest+MyClass>. Actual:<MSTestExtensions.Tests.MsTestAssertionsTest+MyClass>. ", e.Message);
             }
         }
 
@@ -58,7 +58,7 @@ namespace MSTestExtensions.Tests
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Assert.AreEqual("Assert.AreEqual failed. Expected:<MSTestExtensions.Tests.MsTestExtensionsTest+MyClass>. Actual:<MSTestExtensions.Tests.MsTestExtensionsTest+MyClass>. MyClasses are not equal", e.Message);
+                Assert.AreEqual("Assert.AreEqual failed. Expected:<MSTestExtensions.Tests.MsTestAssertionsTest+MyClass>. Actual:<MSTestExtensions.Tests.MsTestAssertionsTest+MyClass>. MyClasses are not equal", e.Message);
             }
         }
 
@@ -75,7 +75,7 @@ namespace MSTestExtensions.Tests
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Assert.AreEqual("Assert.AreEqual failed. Expected:<MSTestExtensions.Tests.MsTestExtensionsTest+MyClass>. Actual:<MSTestExtensions.Tests.MsTestExtensionsTest+MyClass>. left and right MyClasses are not equal", e.Message);
+                Assert.AreEqual("Assert.AreEqual failed. Expected:<MSTestExtensions.Tests.MsTestAssertionsTest+MyClass>. Actual:<MSTestExtensions.Tests.MsTestAssertionsTest+MyClass>. left and right MyClasses are not equal", e.Message);
             }
 
         }
