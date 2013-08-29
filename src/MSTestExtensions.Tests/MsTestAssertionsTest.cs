@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MSTestExtensions.Tests
 {
     [TestClass]
-    public class MsTestAssertionsTest
+    public class MsTestAssertionsTest : BaseTest
     {
         private class MyClass
         {
