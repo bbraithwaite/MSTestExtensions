@@ -36,3 +36,7 @@ To accommodate such syntax I had to write this wrapper.
 NB IAssertion is the interface to use for adding your own custom extensions.
 
 For more details see the accompanying [blog post] (http://www.contentedcoder.com/2012/02/extending-assert-in-mstest.html).
+
+##License
+
+MIT license - http://www.opensource.org/licenses/mit-license.php
