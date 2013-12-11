@@ -48,6 +48,7 @@
     <Compile Include="Assertion.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="ExceptionAssert.cs" />
+    <Compile Include="ExceptionInheritanceOptions.cs" />
     <Compile Include="ExceptionMessageCompareOptions.cs" />
     <Compile Include="IAssertion.cs" />
     <Compile Include="MsTestAssertions.cs" />
