@@ -87,5 +87,47 @@ namespace MSTestExtensions.Tests
             // Act & Assert
             Assert.Throws(() => { throw new ArgumentNullException("username"); }, expectedMessage, ExceptionMessageCompareOptions.Contains);
         }
+
+        [TestMethod]
+        public void FunctionThrowsInheritedException()
+        {
+            // Arrange
+            Action<string> method = (x) => { throw new ArgumentNullException(); };
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => method("some param"));
+        }
+
+        [TestMethod]
+        public void MethodThrowsInheritedException()
+        {
+            // Arrange
+            Action<string> method = (x) => { throw new ArgumentNullException(); };
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => method("some param"));
+        }
+
+        [TestMethod]
+        public void FunctionThrowsNonInheritedException()
+        {
+            // Arrange
+            Action<string> method = (x) => { throw new ArgumentNullException(); };
+            Action invalidAssert = () => { Assert.Throws<ArgumentException>(() => method("some param"), ExceptionInheritanceOptions.Exact); };
+
+            // Act & Assert
+            Assert.Throws<AssertFailedException>(() => invalidAssert());
+        }
+
+        [TestMethod]
+        public void MethodThrowsNonInheritedException()
+        {
+            // Arrange
+            Action<string> method = (x) => { throw new ArgumentNullException(); };
+            Action invalidAssert = () => { Assert.Throws<ArgumentException>(() => method("some param"), ExceptionInheritanceOptions.Exact); };
+
+            // Act & Assert
+            Assert.Throws<AssertFailedException>(() => invalidAssert());
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace MSTestExtensions
     [DebuggerNonUserCode]
     public static class ExceptionAssert
     {
-        public static void Throws<T>(Action task, string expectedMessage, ExceptionMessageCompareOptions options) where T : Exception
+        public static void Throws<T>(Action task, string expectedMessage, ExceptionMessageCompareOptions messageOptions, ExceptionInheritanceOptions inheritOptions) where T : Exception
         {
             try
             {
@@ -16,8 +16,8 @@ namespace MSTestExtensions
             }
             catch (Exception ex)
             {
-                AssertExceptionType<T>(ex);
-                AssertExceptionMessage(ex, expectedMessage, options);
+                AssertExceptionType<T>(ex, inheritOptions);
+                AssertExceptionMessage(ex, expectedMessage, messageOptions);
                 return;
             }
 
@@ -33,66 +33,82 @@ namespace MSTestExtensions
 
         #region Overloaded methods
 
-        public static void Throws<T>(this IAssertion assertion, Action task) where T : Exception
+        public static void Throws<T>(this IAssertion assertion, Action task, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits) where T : Exception
         {
-            Throws<T>(task, null, ExceptionMessageCompareOptions.None);
+            Throws<T>(task, null, ExceptionMessageCompareOptions.None, inheritOptions);
         }
 
-        public static void Throws<T>(Action task) where T : Exception
+        public static void Throws<T>(Action task, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits) where T : Exception
         {
-            Throws<T>(task, null, ExceptionMessageCompareOptions.None);
+            Throws<T>(task, null, ExceptionMessageCompareOptions.None, inheritOptions);
         }
 
-        public static void Throws<T>(this IAssertion assertion, Action task, string expectedMessage) where T : Exception
+        public static void Throws<T>(this IAssertion assertion, Action task, string expectedMessage, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits) where T : Exception
         {
-            Throws<T>(task, expectedMessage, ExceptionMessageCompareOptions.Exact);
+            Throws<T>(task, expectedMessage, ExceptionMessageCompareOptions.Exact, inheritOptions);
         }
 
-        public static void Throws<T>(Action task, string expectedMessage) where T : Exception
+        public static void Throws<T>(Action task, string expectedMessage, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits) where T : Exception
         {
-            Throws<T>(task, expectedMessage, ExceptionMessageCompareOptions.Exact);
+            Throws<T>(task, expectedMessage, ExceptionMessageCompareOptions.Exact, inheritOptions);
         }
 
-        public static void Throws<T>(this IAssertion assertion, Action task, string expectedMessage, ExceptionMessageCompareOptions options) where T : Exception
+        public static void Throws<T>(this IAssertion assertion, Action task, string expectedMessage, ExceptionMessageCompareOptions options, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits) where T : Exception
         {
-            Throws<T>(task, expectedMessage, options);
+            Throws<T>(task, expectedMessage, options, inheritOptions);
         }
 
-        public static void Throws(this IAssertion assertion, Action task, string expectedMessage, ExceptionMessageCompareOptions options)
+        public static void Throws(this IAssertion assertion, Action task, string expectedMessage, ExceptionMessageCompareOptions options, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         {
-            Throws<Exception>(task, expectedMessage, options);
+            Throws<Exception>(task, expectedMessage, options, inheritOptions);
         }
 
-        public static void Throws(Action task, string expectedMessage, ExceptionMessageCompareOptions options)
+        public static void Throws(Action task, string expectedMessage, ExceptionMessageCompareOptions options, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         {
-            Throws<Exception>(task, expectedMessage, options);
+            Throws<Exception>(task, expectedMessage, options, inheritOptions);
         }
 
-        public static void Throws(this IAssertion assertion, Action task, string expectedMessage)
+        public static void Throws(this IAssertion assertion, Action task, string expectedMessage, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         {
-            Throws<Exception>(task, expectedMessage, ExceptionMessageCompareOptions.Exact);
+            Throws<Exception>(task, expectedMessage, ExceptionMessageCompareOptions.Exact, inheritOptions);
         }
 
-        public static void Throws(Action task, string expectedMessage)
+        public static void Throws(Action task, string expectedMessage, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         {
-            Throws<Exception>(task, expectedMessage, ExceptionMessageCompareOptions.Exact);
+            Throws<Exception>(task, expectedMessage, ExceptionMessageCompareOptions.Exact, inheritOptions);
         }
 
-        public static void Throws(this IAssertion assertion, Action task)
+        public static void Throws(this IAssertion assertion, Action task, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         {
-            Throws<Exception>(task, null, ExceptionMessageCompareOptions.None);
+            Throws<Exception>(task, null, ExceptionMessageCompareOptions.None, inheritOptions);
         }
 
-        public static void Throws(Action task)
+        public static void Throws(Action task, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         {
-            Throws<Exception>(task, null, ExceptionMessageCompareOptions.None);
+            Throws<Exception>(task, null, ExceptionMessageCompareOptions.None, inheritOptions);
         }
 
         #endregion
 
-        private static void AssertExceptionType<T>(Exception ex)
+        private static void AssertExceptionNotInherited<T>(Exception ex)
+        {
+            Assert.IsFalse(ex.GetType().IsSubclassOf(typeof(T)));
+        }
+
+        private static void AssertExceptionType<T>(Exception ex, ExceptionInheritanceOptions options)
         {
             Assert.IsInstanceOfType(ex, typeof(T), "Expected exception type failed.");
+            switch (options)
+            {
+                case ExceptionInheritanceOptions.Exact:
+                    AssertExceptionNotInherited<T>(ex);
+                    break;
+                case ExceptionInheritanceOptions.Inherits:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("options");
+
+            }
         }
 
         private static void AssertExceptionMessage(Exception ex, string expectedMessage, ExceptionMessageCompareOptions options)
