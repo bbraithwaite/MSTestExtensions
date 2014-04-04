@@ -118,7 +118,7 @@ namespace MSTestExtensions
                 switch (options)
                 {
                     case ExceptionMessageCompareOptions.Exact:
-                        Assert.AreEqual(ex.Message.ToUpper(), expectedMessage.ToUpper(), "Expected exception message failed.");
+                        Assert.AreEqual(expectedMessage.ToUpper(), ex.Message.ToUpper(), "Expected exception message failed.");
                         break;
                     case ExceptionMessageCompareOptions.Contains:
                         Assert.IsTrue(ex.Message.Contains(expectedMessage), string.Format("Expected exception message does not contain <{0}>.", expectedMessage));
