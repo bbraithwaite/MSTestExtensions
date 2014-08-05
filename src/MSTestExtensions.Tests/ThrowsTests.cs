@@ -9,53 +9,67 @@ namespace MSTestExtensions.Tests
         [TestMethod]
         public void MethodThrowsException()
         {
-            Assert.Throws(() => { throw new Exception(); });
+            var ex = new Exception();
+            var result = Assert.Throws(() => { throw ex; });
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
         public void MethodWithParametersThrowsException()
         {
             // Arrange
-            Action<string> method = (x) => { throw new Exception(); };
+            var ex = new Exception();
+            Action<string> method = (x) => { throw ex; };
             
             // Act & Assert
-            Assert.Throws(() => method("some param"));
+            var result = Assert.Throws(() => method("some param"));
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
         public void MethodThrowsSpecifiedException()
         {
-            Assert.Throws<ArgumentNullException>(() => { throw new ArgumentNullException(); });
+            var ex = new ArgumentNullException();
+            
+            var result = Assert.Throws<ArgumentNullException>(() => { throw ex; });
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
         public void FunctionThrowsException()
         {
             // Arrange
-            Func<object> function = () => { throw new Exception(); };
+            var ex = new Exception();
+            Func<object> function = () => { throw ex; };
             
             // Act & Assert
-            Assert.Throws(() => function());
+            var result = Assert.Throws(() => function());
+
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
         public void FunctionWithParameterThrowsException()
         {
+            var ex = new Exception();
             // Arrange
-            Func<object, string> function = (x) => { throw new Exception(); };
+            Func<object, string> function = (x) => { throw ex; };
             
             // Act & Assert
-            Assert.Throws(() => function("some value"));
+            var result = Assert.Throws(() => function("some value"));
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
         public void FunctionThrowsSpecifiedException()
         {
+            var ex = new ArgumentNullException();
             // Arrange
-            Func<object> function = () => { throw new ArgumentNullException(); };
+            Func<object> function = () => { throw ex; };
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => function());
+            var result = Assert.Throws<ArgumentNullException>(() => function());
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
@@ -64,8 +78,11 @@ namespace MSTestExtensions.Tests
             // Arrange
             const string expectedMessage = "something has gone wrong.";
 
+            var ex = new Exception(expectedMessage);
+
             // Act & Assert
-            Assert.Throws(() => { throw new Exception(expectedMessage); }, expectedMessage);
+            var result = Assert.Throws(() => { throw ex; }, expectedMessage);
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
@@ -74,8 +91,12 @@ namespace MSTestExtensions.Tests
             // Arrange
             string expectedMessage = "Value cannot be null." + Environment.NewLine + "Parameter name: username";
 
+            var ex = new ArgumentNullException("username");
+            
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => { throw new ArgumentNullException("username"); }, expectedMessage);
+            var result = Assert.Throws<ArgumentNullException>(() => { throw ex; }, expectedMessage);
+
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
@@ -83,29 +104,35 @@ namespace MSTestExtensions.Tests
         {
             // Arrange
             const string expectedMessage = "Parameter name: username";
+            var ex = new ArgumentNullException("username");
 
             // Act & Assert
-            Assert.Throws(() => { throw new ArgumentNullException("username"); }, expectedMessage, ExceptionMessageCompareOptions.Contains);
+            var result = Assert.Throws(() => { throw ex; }, expectedMessage, ExceptionMessageCompareOptions.Contains);
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
         public void FunctionThrowsInheritedException()
         {
             // Arrange
-            Action<string> method = (x) => { throw new ArgumentNullException(); };
+            var ex = new ArgumentNullException();
+            Action<string> method = (x) => { throw ex; };
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => method("some param"));
+            var result = Assert.Throws<ArgumentException>(() => method("some param"));
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
         public void MethodThrowsInheritedException()
         {
             // Arrange
-            Action<string> method = (x) => { throw new ArgumentNullException(); };
+            var ex = new ArgumentNullException();
+            Action<string> method = (x) => { throw ex; };
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => method("some param"));
+            var result = Assert.Throws<ArgumentException>(() => method("some param"));
+            Assert.AreEqual(ex, result);
         }
 
         [TestMethod]
@@ -113,10 +140,10 @@ namespace MSTestExtensions.Tests
         {
             // Arrange
             Action<string> method = (x) => { throw new ArgumentNullException(); };
-            Action invalidAssert = () => { Assert.Throws<ArgumentException>(() => method("some param"), ExceptionInheritanceOptions.Exact); };
+            Action invalidAssert = () => Assert.Throws<ArgumentException>(() => method("some param"), ExceptionInheritanceOptions.Exact);
 
             // Act & Assert
-            Assert.Throws<AssertFailedException>(() => invalidAssert());
+            Assert.Throws<AssertFailedException>(invalidAssert);
         }
 
         [TestMethod]
@@ -124,10 +151,10 @@ namespace MSTestExtensions.Tests
         {
             // Arrange
             Action<string> method = (x) => { throw new ArgumentNullException(); };
-            Action invalidAssert = () => { Assert.Throws<ArgumentException>(() => method("some param"), ExceptionInheritanceOptions.Exact); };
+            Action invalidAssert = () => Assert.Throws<ArgumentException>(() => method("some param"), ExceptionInheritanceOptions.Exact);
 
             // Act & Assert
-            Assert.Throws<AssertFailedException>(() => invalidAssert());
+            Assert.Throws<AssertFailedException>(invalidAssert);
         }
     }
 }
