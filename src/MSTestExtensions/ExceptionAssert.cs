@@ -17,22 +17,14 @@ namespace MSTestExtensions
             }
             catch (Exception ex)
             {
-                AssertExceptionType<T>(ex, inheritOptions);
-                AssertExceptionMessage(ex, expectedMessage, messageOptions);
-                return (T)ex;
+                return CheckException<T>(expectedMessage, messageOptions, inheritOptions, ex);
             }
 
-            if (typeof(T).Equals(new Exception().GetType()))
-            {
-                Assert.Fail("Expected exception but no exception was thrown.");
-            }
-            else
-            {
-                Assert.Fail(string.Format("Expected exception of type {0} but no exception was thrown.", typeof(T)));
-            }
+            OnNoExceptionThrown<T>();
 
             return default(T);
         }
+
 
         /// <summary>
         /// This check if an async method throws an exception as InnerException (chained exception are ignored)
@@ -51,12 +43,16 @@ namespace MSTestExtensions
             }
             catch (AggregateException aggregateEx)
             {
-                var ex = aggregateEx.InnerException;
-                AssertExceptionType<T>(ex, inheritOptions);
-                AssertExceptionMessage(ex, expectedMessage, messageOptions);
-                return (T)ex;
+                return CheckException<T>(expectedMessage, messageOptions, inheritOptions, aggregateEx.InnerException);
             }
 
+            OnNoExceptionThrown<T>();
+
+            return default(T);
+        }
+
+        private static void OnNoExceptionThrown<T>() where T : Exception
+        {
             if (typeof(T).Equals(new Exception().GetType()))
             {
                 Assert.Fail("Expected exception but no exception was thrown.");
@@ -65,9 +61,16 @@ namespace MSTestExtensions
             {
                 Assert.Fail(string.Format("Expected exception of type {0} but no exception was thrown.", typeof(T)));
             }
-
-            return default(T);
         }
+
+        private static T CheckException<T>(string expectedMessage, ExceptionMessageCompareOptions messageOptions, ExceptionInheritanceOptions inheritOptions, Exception ex) where T : Exception
+        {
+            AssertExceptionType<T>(ex, inheritOptions);
+            AssertExceptionMessage(ex, expectedMessage, messageOptions);
+            return (T)ex;
+        }
+
+
 
         #region Overloaded methods
 
