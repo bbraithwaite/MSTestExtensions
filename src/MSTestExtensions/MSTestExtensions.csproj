@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assertion.cs" />
+    <Compile Include="ThrowsAsyncAssert.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="ExceptionAssert.cs" />
     <Compile Include="ExceptionInheritanceOptions.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="IAssertion.cs" />
     <Compile Include="MsTestAssertions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThrowsAssert.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
