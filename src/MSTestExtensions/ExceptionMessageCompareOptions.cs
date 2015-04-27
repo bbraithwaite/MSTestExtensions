@@ -4,6 +4,7 @@
     {
         None,
         Exact,
-        Contains
+        Contains,
+        IgnoreCase
     }
 }

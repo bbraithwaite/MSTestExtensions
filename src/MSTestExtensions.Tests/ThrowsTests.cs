@@ -101,6 +101,20 @@ namespace MSTestExtensions.Tests
         }
 
         [TestMethod]
+        public void MethodThrowsSpecificExceptionWithExpectedExceptionMessageIgnoringCase()
+        {
+            // Arrange
+            string expectedMessage = "Value Cannot be null." + Environment.NewLine + "Parameter name: username";
+
+            var ex = new ArgumentNullException("username");
+
+            // Act & Assert
+            var result = Assert.Throws<ArgumentNullException>(() => { throw ex; }, expectedMessage, ExceptionMessageCompareOptions.IgnoreCase);
+
+            Assert.AreEqual(ex, result);
+        }
+
+        [TestMethod]
         public void MethodThrowsExceptionWithPartiallyMatchingExceptionMessage()
         {
             // Arrange
