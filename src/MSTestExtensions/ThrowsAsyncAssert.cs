@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 
 namespace MSTestExtensions
 {
+    /// <summary>
+    /// Assertion methods for checking exceptions with async methods.
+    /// </summary>
     [DebuggerStepThrough]
     [DebuggerNonUserCode]
     public static class ThrowsAsyncAssert
@@ -12,12 +14,12 @@ namespace MSTestExtensions
         /// <summary>
         /// This checks if an async method throws an exception as InnerException (chained exception are ignored)
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="task"></param>
-        /// <param name="expectedMessage"></param>
-        /// <param name="messageOptions"></param>
-        /// <param name="inheritOptions"></param>
-        /// <returns></returns>
+        /// <param name="task">The async task under test.</param>
+        /// <param name="expectedMessage">The expected message.</param>
+        /// <param name="messageOptions">The message options for specifying assertion rules for the exception message.</param>
+        /// <param name="inheritOptions">The inherit options for specifying assertion rules for the exception type.</param>
+        /// <typeparam name="T">The type of the expected exception.</typeparam>
+        /// <returns>The <see cref="T"/>. Returns the exception instance.</returns>
         public static T ThrowsAsync<T>(Task task, string expectedMessage, ExceptionMessageCompareOptions messageOptions, ExceptionInheritanceOptions inheritOptions) where T : Exception
         {
             try
