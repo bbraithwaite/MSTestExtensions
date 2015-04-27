@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MSTestExtensions
 {
+    /* This code is auto-generated */
     [DebuggerStepThrough]
     [DebuggerNonUserCode]
     public static class MsTestAssertions
