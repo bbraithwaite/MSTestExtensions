@@ -68,7 +68,7 @@ Assert.Throws<ArgumentNullException>(() => { throw ArgumentNullException(); });
 There are options to assert the exception type:
 
 * Inherits (the default case - a type will pass the assertion if it is a subtype)
-* Exact (subclasses are not considered - [See example](https://github.com/bbraithwaite/MSTestExtensions/blob/master/src/MSTestExtensions.Tests/ThrowsTests.cs#L169)
+* Exact (subclasses are not considered - [See example](https://github.com/bbraithwaite/MSTestExtensions/blob/master/src/MSTestExtensions.Tests/ThrowsTests.cs#L169))
 
 ## Assert an Exception Message
 
@@ -85,6 +85,12 @@ There are options to assert the exception message:
 * IgnoreCase (case of string is ignored - [See example](https://github.com/bbraithwaite/MSTestExtensions/blob/master/src/MSTestExtensions.Tests/ThrowsTests.cs#L112))
 
 For more examples, see the unit tests: https://github.com/bbraithwaite/MSTestExtensions/blob/master/src/MSTestExtensions.Tests/ThrowsTests.cs
+
+## Versioning
+
+Latest version is 4.0.0.
+
+Available via Nuget: https://www.nuget.org/packages/MSTestExtensions/4.0.0
 
 ##License
 
