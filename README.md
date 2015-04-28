@@ -39,7 +39,7 @@ For more details see the accompanying [blog post] (http://www.bradoncode.com/blo
 
 ## Features
 
-### Assert Exceptions are throw
+### Assert Exceptions are thrown
 
 * Assert.Throws()
 * Assert.ThrowsAsync()
