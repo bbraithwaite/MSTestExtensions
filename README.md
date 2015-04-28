@@ -29,7 +29,9 @@ To accommodate such syntax I had to write this wrapper.
 2. Add a using/import MsTestExtensions entry within your class.
 
 3. Inherit from BaseTest with the Test Class you are using and you should see Assert.Throws(...) in intellisense.
-  * If you would rather not inherit from BaseTest you can use the syntax: ExceptionAssert.Throws(...)
+  * If you would rather not inherit from BaseTest you can use the syntax: 
+    * ThrowsAssert.Throws(...)
+    * ThrowsAsyncAssert.Throws(...)
   * Lastly if the above options do not suite, you can add the following within your test class: public static readonly IAssertion Assert = new Assertion();
 
 
