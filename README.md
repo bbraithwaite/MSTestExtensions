@@ -54,8 +54,10 @@ Assert.Throws(() => { throw new Exception(); });
 
 ### Assert an Exception Type
 
-* Assert.Throws<T>()
-* Assert.ThrowsAsync<T>()
+``` csharp
+Assert.Throws<T>()
+Assert.ThrowsAsync<T>()
+```
 
 Where the type T must be the exception type. Example:  
 
