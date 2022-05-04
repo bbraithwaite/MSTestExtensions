@@ -73,7 +73,7 @@ namespace MSTestExtensions.Tests
             Assert.Throws<AssertFailedException>(invalidAssert);
         }
 
-        private static async Task AsyncThrow<E>(E exception) where E : Exception
+        private static Task AsyncThrow<E>(E exception) where E : Exception
         {
             throw exception;
         }
