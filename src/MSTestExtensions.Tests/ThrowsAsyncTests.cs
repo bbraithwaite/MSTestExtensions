@@ -41,7 +41,7 @@ namespace MSTestExtensions.Tests
         public void MethodThrowsAsyncExceptionWithPartiallyMatchingExceptionMessage()
         {
             // Arrange
-            const string expectedMessage = "Parameter name: username";
+            const string expectedMessage = "Parameter 'username'";
             var ex = new ArgumentNullException("username");
 
             // Act & Assert

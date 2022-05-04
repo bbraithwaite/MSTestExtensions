@@ -90,7 +90,7 @@ namespace MSTestExtensions.Tests
         public void MethodThrowsSpecificExceptionWithExpectedExceptionMessage()
         {
             // Arrange
-            string expectedMessage = "Value cannot be null." + Environment.NewLine + "Parameter name: username";
+            string expectedMessage = "Value cannot be null. (Parameter 'username')";
 
             var ex = new ArgumentNullException("username");
 
@@ -104,7 +104,7 @@ namespace MSTestExtensions.Tests
         public void MethodThrowsSpecificExceptionWithExpectedExceptionMessageIgnoringCase()
         {
             // Arrange
-            string expectedMessage = "Value Cannot be null." + Environment.NewLine + "Parameter name: username";
+			string expectedMessage = "Value cannot be null. (Parameter 'username')";
 
             var ex = new ArgumentNullException("username");
 
@@ -118,7 +118,7 @@ namespace MSTestExtensions.Tests
         public void MethodThrowsExceptionWithPartiallyMatchingExceptionMessage()
         {
             // Arrange
-            const string expectedMessage = "Parameter name: username";
+            const string expectedMessage = "Parameter 'username'";
             var ex = new ArgumentNullException("username");
 
             // Act & Assert
