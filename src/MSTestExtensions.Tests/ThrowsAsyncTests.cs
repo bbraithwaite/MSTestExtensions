@@ -73,7 +73,9 @@ namespace MSTestExtensions.Tests
             Assert.Throws<AssertFailedException>(invalidAssert);
         }
 
-        private static Task AsyncThrow<E>(E exception) where E : Exception
+#pragma warning disable CS1998
+        private static async Task AsyncThrow<E>(E exception) where E : Exception
+#pragma warning restore CS1998
         {
             throw exception;
         }
