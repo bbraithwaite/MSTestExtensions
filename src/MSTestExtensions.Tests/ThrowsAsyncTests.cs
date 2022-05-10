@@ -41,7 +41,7 @@ namespace MSTestExtensions.Tests
         public void MethodThrowsAsyncExceptionWithPartiallyMatchingExceptionMessage()
         {
             // Arrange
-            const string expectedMessage = "Parameter name: username";
+            const string expectedMessage = "Parameter 'username'";
             var ex = new ArgumentNullException("username");
 
             // Act & Assert
@@ -73,7 +73,9 @@ namespace MSTestExtensions.Tests
             Assert.Throws<AssertFailedException>(invalidAssert);
         }
 
+#pragma warning disable CS1998
         private static async Task AsyncThrow<E>(E exception) where E : Exception
+#pragma warning restore CS1998
         {
             throw exception;
         }
