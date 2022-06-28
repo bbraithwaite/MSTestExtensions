@@ -1,7 +1,6 @@
-﻿namespace MSTestExtensions
-{
-    public interface IAssertion
-    {
+﻿namespace MSTestExtensions;
 
-    }
+public interface IAssertion
+{
+
 }
