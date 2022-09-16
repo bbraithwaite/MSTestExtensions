@@ -6,5 +6,4 @@ namespace MSTestExtensions;
 [DebuggerNonUserCode]
 public class Assertion : IAssertion
 {
-
 }

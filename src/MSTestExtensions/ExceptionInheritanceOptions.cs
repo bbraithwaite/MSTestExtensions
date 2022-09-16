@@ -6,7 +6,7 @@
 public enum ExceptionInheritanceOptions
 {
 	/// <summary>
-	///  Not Set.
+	/// Not Set.
 	/// </summary>
 	None,
 

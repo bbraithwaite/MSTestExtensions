@@ -32,12 +32,13 @@ internal static class ExceptionAssert
 	/// <param name="inheritOptions">The inherit options for specifying assertion rules for the exception type.</param>
 	/// <param name="ex">The exception thrown by the method under test.</param>
 	/// <typeparam name="T">The type of the expected exception.</typeparam>
-	/// <returns>The <see cref="T"/>. Returns the exception instance.</returns>
-	public static T CheckException<T>(string expectedMessage, ExceptionMessageCompareOptions messageOptions, ExceptionInheritanceOptions inheritOptions, Exception ex) where T : Exception
+	/// <returns>The <see cref="T" />. Returns the exception instance.</returns>
+	public static T CheckException<T>(string expectedMessage, ExceptionMessageCompareOptions messageOptions,
+		ExceptionInheritanceOptions inheritOptions, Exception ex) where T : Exception
 	{
 		AssertExceptionType<T>(ex, inheritOptions);
 		AssertExceptionMessage(ex, expectedMessage, messageOptions);
-		return (T)ex;
+		return (T) ex;
 	}
 
 	/// <summary>
@@ -72,7 +73,6 @@ internal static class ExceptionAssert
 				break;
 			default:
 				throw new ArgumentOutOfRangeException("inheritanceOptions");
-
 		}
 	}
 
@@ -96,12 +96,12 @@ internal static class ExceptionAssert
 					Assert.AreEqual(expectedMessage, ex.Message, true, "Expected exception message failed.");
 					break;
 				case ExceptionMessageCompareOptions.Contains:
-					Assert.IsTrue(ex.Message.Contains(expectedMessage), string.Format("Expected exception message does not contain <{0}>.", expectedMessage));
+					Assert.IsTrue(ex.Message.Contains(expectedMessage),
+						string.Format("Expected exception message does not contain <{0}>.", expectedMessage));
 					break;
 				default:
 					throw new ArgumentOutOfRangeException("messageOptions");
 			}
-
 		}
 	}
 }

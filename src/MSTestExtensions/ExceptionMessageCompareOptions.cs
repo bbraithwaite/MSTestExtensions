@@ -6,7 +6,7 @@
 public enum ExceptionMessageCompareOptions
 {
 	/// <summary>
-	///  Not Set.
+	/// Not Set.
 	/// </summary>
 	None,
 
